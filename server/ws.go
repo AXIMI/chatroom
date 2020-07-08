@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"net/http"
@@ -23,6 +24,9 @@ type ws struct {
 func (s *ws) Handle() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		name := c.Query("name")
+		fmt.Println(name)
+
+
 		conn, err := s.upgrader.Upgrade(c.Writer, c.Request, nil)
 		if err != nil {
 			panic(err)
