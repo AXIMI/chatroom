@@ -1,10 +1,13 @@
 package server
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"net/http"
+
+	//"net"
+	_ "github.com/go-sql-driver/mysql" //加载mysql
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 var Websocket = &ws{
@@ -21,12 +24,40 @@ type ws struct {
 	upgrader *websocket.Upgrader
 }
 
+
 func (s *ws) Handle() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		name := c.Query("name")
-		fmt.Println(name)
+		//db, err := gorm.Open("mysql", "root:12345678@/chat?charset=utf8&parseTime=True&loc=Local")
+		//defer db.Close()
+		//
+		//if err != nil {
+		//	panic(err)
+		//}
+		//
+		//var user user
+		//db.Where("username = ?", name).Find(&user)
+		//if user.Username == "" {
+		//	c.JSON(200, gin.H{
+		//		"status":  1,
+		//		"message": "there is no such user",
+		//	})
+		//}
 
 
+
+
+		//else if user.Password != password {
+		//	c.JSON(200, gin.H{
+		//		"status":  2,
+		//		"message": "wrong password",
+		//	})
+		//}else {
+		//	c.JSON(200, gin.H{
+		//		"status":  0,
+		//		"message": "access",
+		//	})
+		//}
 		conn, err := s.upgrader.Upgrade(c.Writer, c.Request, nil)
 		if err != nil {
 			panic(err)
