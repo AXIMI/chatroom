@@ -19,10 +19,9 @@ type User struct {
 func NewServer() *gin.Engine {
 	s := gin.Default()
 
-
 	// static files
 	s.Static("/static", "./static")
-	s.StaticFile("/", "web/index.html")
+	s.StaticFile("/", "./web/index.html")
 	s.StaticFile("/chatroom", "./web/chatroom.html")
 
 	s.POST("/authentication", func(c *gin.Context){

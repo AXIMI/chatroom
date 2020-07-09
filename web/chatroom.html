@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Chat Demo</title>
+    <title>Chat Room</title>
 
     <link
       rel="stylesheet"
@@ -71,7 +71,8 @@
         </el-container>
       </el-container>
     </div>
-    <script>
+  </body>
+  <script>
       const name = Cookies.get("username")
         ? Cookies.get("username")
         : (window.location.href = "/");
@@ -140,15 +141,16 @@
             socket.onopen = () => {
               this.$message({
                 type: "success",
-                message: "聊天室连接成功"
+                message: "已进入聊天室"
               });
             };
             socket.onclose = () => {
-              this.$message({
-                type: "warning",
-                message: "连接断开"
-              });
+              // this.$message({
+              //   type: "warning",
+              //   message: "连接断开"
+              // });
               this.socket = null;
+              window.location.href = "/";
             };
             socket.onmessage = event => {
               let dt = JSON.parse(event.data);
@@ -174,6 +176,7 @@
           sendMessage() {
             if (!this.msg) {
               this.$refs.input.focus();
+              this.$message('注册成功');
               return;
             }
             const req = JSON.stringify({
@@ -189,8 +192,8 @@
           }
         }
       });
-    </script>
-  </body>
+  </script>
+ 
   <style>
     html,
     body {
