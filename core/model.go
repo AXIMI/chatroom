@@ -9,9 +9,6 @@ const (
 	EventTypeMsg    = "event-msg"    // 用户发言
 	EventTypeSystem = "event-system" // 系统信息推送 如房间人数
 	EventTypeJoin   = "event-join"   // 用户加入
-	EventTypeTyping = "event-typing" // 用户正在输入
-	EventTypeLeave  = "event-leave"  // 用户离开
-	EventTypeImage  = "event-image"  // todo 消息图片
 )
 
 // 聊天室事件定义

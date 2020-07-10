@@ -7,5 +7,5 @@ import (
 
 func main() {
 	s := server.NewServer()
-	log.Fatal(s.Run())
+	log.Fatal(s.Run(":8081"))
 }

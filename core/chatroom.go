@@ -11,14 +11,13 @@ const chanSize = 10
 
 const msgJoin = "[加入房间]"
 const msgLeave = "[离开房间]"
-const msgTyping = "[正在输入]"
 
 // 聊天室
 type Room struct {
 	users       map[uid]chan Event     // 当前房间订阅者
 	userCount   int                    // 当前房间总人数
 	publishChn  chan Event             // 聊天室的消息推送入口
-	archive     *list.List             // 历史记录 todo 未持久化 重启失效
+	archive     *list.List             // 历史记录
 	archiveChan chan chan []Event      // 通过接受chan来同步聊天内容
 	joinChn     chan chan Subscription // 接收订阅事件的通道 用户加入聊天室后要把历史事件推送给用户
 	leaveChn    chan uid               // 用户取消订阅通道 把通道中的历史事件释放并把用户从聊天室用户列表中删除
